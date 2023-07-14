@@ -30,7 +30,7 @@ router.route('/:thoughtId/reactions')
 
 // /:thoughtId/reactions/:reactionId
 router.route('/:thoughtId/reactions/:reactionId')
-    .delete(deleteThought);
+    .delete(removeReaction);
 
 
 module.exports = router;

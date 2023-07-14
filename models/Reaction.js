@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 
 const reactionSchema = new Schema(
     {
@@ -25,7 +25,7 @@ const reactionSchema = new Schema(
     },
     {
         toJSON: {
-          getters: true,            //is this the 'getter method to format timestamp on query' for README.md line136??
+          getters: true,
         },
         id: false,
       }, 

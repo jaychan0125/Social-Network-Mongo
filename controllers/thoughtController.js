@@ -15,7 +15,7 @@ const getThoughts = async (req, res) => {
 // get ONE thought 
 const getOneThought = async (req, res) => {
     try {
-        const oneThought = await Thought.findOne({ _id: req.params.id })
+        const oneThought = await Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v');
 
         if (!oneThought) {
@@ -28,7 +28,6 @@ const getOneThought = async (req, res) => {
     };
 };
 
-// HELP HERE PLEASE
 // CREATE new thought 
 const newThought = async (req, res) => {
     try {
@@ -54,7 +53,7 @@ const newThought = async (req, res) => {
 const updateThought = async (req, res) => {
     try {
         const updatedThought = await Thought.findOneAndUpdate(
-            { _id: req.params.id },
+            { _id: req.params.thoughtId },
             { $set: req.body },
             { runValidators: true, new: true }
         );
@@ -72,7 +71,7 @@ const updateThought = async (req, res) => {
 // DELETE thought 
 const deleteThought = async (req, res) => {
     try {
-        const deletedThought = await Thought.findOneAndDelete({ _id: req.params.id });
+        const deletedThought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
         if (!deletedThought) {
             return res.status(404).json({ message: 'No thought with that ID found.'});
@@ -119,7 +118,7 @@ const removeReaction = async (req, res) => {
           return res.status(404).json({ message: 'No thought with that ID found.' });
         }
   
-        res.status(200).json({ message: 'Success! Updated the thought!', thought });
+        res.status(200).json({ message: 'Success! Deleted the reaction!', thought });
       } catch (err) {
         res.status(500).json(err);
       };
@@ -129,9 +128,9 @@ const removeReaction = async (req, res) => {
 module.exports = {
     getThoughts,
     getOneThought,
-    newThought,     //NEED HELP
+    newThought,     
     updateThought,
     deleteThought,
-    addReaction,       //PLS CHECK
-    removeReaction     //PLS CHECK
+    addReaction,       
+    removeReaction     
 };
